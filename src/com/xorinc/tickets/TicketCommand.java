@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class TicketCommand implements CommandExecutor {
 
@@ -24,18 +25,32 @@ public class TicketCommand implements CommandExecutor {
 			return true;
 		}
 		
+		String name = "Server Console";
+		
+		if(sender instanceof Player){
+			name = ((Player) sender).getName();
+		}
+			
+		
+		
 		if(args[0].equalsIgnoreCase("post")){
 			if(!sender.hasPermission("stafftickets.post")){
 				sender.sendMessage(ChatColor.RED + "You may not post staff tickets.");
 				return true;
 			}
 			
+			String message = "[" + name + "]"; 
+			
+			for(int i = 1; i < args.length; i++){
+				message += " " + args[i];
+			}
+						
 			if(args.length < 2){
 				sender.sendMessage(ChatColor.RED + "Please provide a message for your ticket.");
 				return true;
 			}
 			
-			if(plugin.createTicket(args[1])){
+			if(plugin.createTicket(message)){
 				sender.sendMessage(ChatColor.GOLD + "Ticket posted!");
 			}	
 			else{
