@@ -1,0 +1,28 @@
+name: StaffTickets
+main: com.xorinc.tickets.TicketPlugin
+version: 0.0.1
+author: dr_Xor
+website: http://github.com/drXor
+description: >
+    Bukkit plugin that creates a simple ticket system for staff members.
+softdepend: []
+commands: 
+  stafftickets:
+    description: Config Reload command
+    aliases: [st]
+    permission: stafftickets.use
+    usage: /<command> <post|read|remove>
+
+permissions:
+  stafftickets.use:
+      description: Allows use of the main plugin command.
+      default: op
+  stafftickets.post:
+      description: Allows posting of tickets.
+      default: op
+  stafftickets.read:
+      description: Allows reading of tickets.
+      default: op      
+  stafftickets.remove:
+      description: Allows removal of tickets.
+      default: op
